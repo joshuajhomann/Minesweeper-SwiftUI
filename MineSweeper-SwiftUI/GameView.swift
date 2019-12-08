@@ -9,27 +9,9 @@
 import SwiftUI
 import Combine
 
-class BoardGeometry: ObservableObject {
-  @Published var size: CGFloat = 0
-  func set(size: CGFloat) {
-    guard size != self.size else {
-      return
-    }
-    self.size = size
-  }
-}
-
-extension View {
-  func sideEffect(_ sideEffect: @escaping () -> Void) -> some View {
-    sideEffect()
-    return self
-  }
-}
-
 struct GameView: View {
   @ObservedObject var game: MineSweeperGame
-  @ObservedObject var boardGeometry = BoardGeometry()
-
+  @State var squareSize: CGFloat = 0
   private enum Constant {
     static let boardMargin: CGFloat = 12
     static let squareSpacing: CGFloat = 4
@@ -45,11 +27,11 @@ struct GameView: View {
             HStack(spacing: Constant.squareSpacing) {
               ForEach (0..<self.game.dimension) { x in
                 Text(self.makeLabel(x: x, y:y))
-                   .font(self.boardGeometry.size < Constant.fontThreshold ? .body : .largeTitle)
+                   .font(self.squareSize < Constant.fontThreshold ? .body : .largeTitle)
                    .foregroundColor(Color.gray)
                 .frame(
-                  width: self.boardGeometry.size,
-                  height: self.boardGeometry.size
+                  width: self.squareSize,
+                  height: self.squareSize
                 )
                 .background(Color(self.boardColor(x: x, y: y)))
                 .cornerRadius(Constant.squareSpacing)
@@ -67,7 +49,9 @@ struct GameView: View {
           let minimumDimension = min(geometry.width, geometry.height)
           let dimension = CGFloat(self.game.dimension)
           let squareSize = (minimumDimension -  dimension * Constant.squareSpacing - 2 * Constant.boardMargin) / dimension
-          self.boardGeometry.set(size: squareSize)
+          DispatchQueue.main.async {
+            self.squareSize = squareSize
+          }
         }
       }
       Button(action: {
