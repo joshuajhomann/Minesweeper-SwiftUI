@@ -52,7 +52,7 @@ class MineSweeperGame: ObservableObject {
     guard case let .empty(count) = squares[index].contents, count == 0 else {
       return
     }
-    adjacentOffsets.map {i,j in (i+x, j+y)}.forEach {(x, y) in self.reveal(x: x, y: y)}
+    adjacentOffsets.map {i,j in (i+x, j+y)}.forEach {(x, y) in self.show(x: x, y: y)}
   }
 
   private func index(x: Int, y: Int) -> Int { x+y*dimension }
