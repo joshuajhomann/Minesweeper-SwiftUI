@@ -94,7 +94,8 @@ class MineSweeperGame: ObservableObject {
       if element.contents == .bomb {
         return element
       }
-      let count = adjacentOffsets.map {(x,y) in (x + index % dimension, y + index / dimension)}
+      let count = adjacentOffsets
+        .map {(x,y) in (x + index % dimension, y + index / dimension)}
         .reduce(0) { result, coordinate in
           let (x, y) = coordinate
           guard (0..<dimension).contains(x), (0..<dimension).contains(y) else {
@@ -107,6 +108,6 @@ class MineSweeperGame: ObservableObject {
   }
 
   subscript (x: Int, y: Int) -> Square {
-    return squares[index(x: x, y: y)]
+    squares[index(x: x, y: y)]
   }
 }
