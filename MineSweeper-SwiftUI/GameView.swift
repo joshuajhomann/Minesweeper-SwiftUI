@@ -11,7 +11,7 @@ import Combine
 
 struct GameView: View {
   @ObservedObject var game: MineSweeperGame
-  @State var squareSize: CGFloat = 0
+  @State private var squareSize: CGFloat = 0
   private enum Constant {
     static let boardMargin: CGFloat = 12
     static let squareSpacing: CGFloat = 4
