@@ -29,11 +29,11 @@ extension View {
 struct GameView: View {
   @ObservedObject var game: MineSweeperGame
   @ObservedObject var boardGeometry = BoardGeometry()
-  
+
   private enum Constant {
     static let boardMargin: CGFloat = 12
     static let squareSpacing: CGFloat = 4
-    static let fontTreshold: CGFloat = 36
+    static let fontThreshold: CGFloat = 36
   }
 
   var body: some View {
@@ -45,7 +45,7 @@ struct GameView: View {
             HStack(spacing: Constant.squareSpacing) {
               ForEach (0..<self.game.dimension) { x in
                 Text(self.makeLabel(x: x, y:y))
-                   .font(self.boardGeometry.size < Constant.fontTreshold ? .body : .largeTitle)
+                   .font(self.boardGeometry.size < Constant.fontThreshold ? .body : .largeTitle)
                    .foregroundColor(Color.gray)
                 .frame(
                   width: self.boardGeometry.size,
