@@ -66,8 +66,7 @@ class MineSweeperGame: ObservableObject {
     case .flagged:
       squares[index(x: x, y: y)].visibility = .covered
     }
-    let temp = gameState
-    gameState = temp
+    gameState = .playing
   }
 
   func reveal(x: Int, y: Int) {
