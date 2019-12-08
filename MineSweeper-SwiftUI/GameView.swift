@@ -29,8 +29,7 @@ extension View {
 struct GameView: View {
   @ObservedObject var game: MineSweeperGame
   @ObservedObject var boardGeometry = BoardGeometry()
-  @State var needsChange = true
-
+  
   private enum Constant {
     static let boardMargin: CGFloat = 12
     static let squareSpacing: CGFloat = 4
