@@ -42,6 +42,7 @@
 		03D4915B239C140C008DBFB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03D49164239C142B008DBFB3 /* MineSweeperGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineSweeperGame.swift; sourceTree = "<group>"; };
 		03DDB79C239CF3EF0042AA6A /* View+SideEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+SideEffect.swift"; sourceTree = "<group>"; };
+		03DDB79E239F7DE30042AA6A /* MineSweeper-SwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MineSweeper-SwiftUI.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +84,7 @@
 		03D49141239C140B008DBFB3 /* MineSweeper-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				03DDB79E239F7DE30042AA6A /* MineSweeper-SwiftUI.entitlements */,
 				03D49142239C140B008DBFB3 /* AppDelegate.swift */,
 				03D49144239C140B008DBFB3 /* SceneDelegate.swift */,
 				03D49146239C140B008DBFB3 /* GameView.swift */,
@@ -370,7 +372,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "MineSweeper-SwiftUI/MineSweeper-SwiftUI.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"MineSweeper-SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = L4WMJSL77G;
 				ENABLE_PREVIEWS = YES;
@@ -381,6 +385,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "josh.MineSweeper-SwiftUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -390,7 +395,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "MineSweeper-SwiftUI/MineSweeper-SwiftUI.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"MineSweeper-SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = L4WMJSL77G;
 				ENABLE_PREVIEWS = YES;
@@ -401,6 +408,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "josh.MineSweeper-SwiftUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

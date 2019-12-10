@@ -45,7 +45,7 @@ class MineSweeperGame: ObservableObject {
       return
     }
     let index = self.index(x: x, y: y)
-    guard squares[index].visibility == .covered else {
+    guard squares[index].visibility != .visible else {
       return
     }
     squares[index].visibility = .visible
@@ -71,22 +71,17 @@ class MineSweeperGame: ObservableObject {
 
   func reveal(x: Int, y: Int) {
     show(x: x, y: y)
-    gameState = {
-      var won = true
-      for index in (0..<dimension*dimension) {
-        if squares[index].contents == .bomb && squares[index].visibility == .visible {
-          return .lost
-        }
-        if case .empty = squares[index].contents, squares[index].visibility != .visible{
-          won = false
-        }
+    gameState = squares.reduce(GameState.won) { state, square in
+      if square.contents == .bomb && square.visibility == .visible {
+        return .lost
+      } else if case .empty = square.contents, square.visibility != .visible, state != .lost {
+        return .playing
       }
-      return won ? .won : .playing
-    }()
+      return state
+    }
   }
 
   func reset() {
-    gameState = .playing
     let shuffled = (0..<(dimension * dimension))
       .map { Square(visibility: .covered, contents: $0 < bombCount ? .bomb : .empty(0))}
       .shuffled()
@@ -105,6 +100,7 @@ class MineSweeperGame: ObservableObject {
       }
       return Square(visibility: .covered, contents: .empty(count))
     }
+    gameState = .playing
   }
 
   subscript (x: Int, y: Int) -> Square {

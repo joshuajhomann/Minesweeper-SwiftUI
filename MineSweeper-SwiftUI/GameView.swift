@@ -35,8 +35,11 @@ struct GameView: View {
                 )
                 .background(Color(self.boardColor(x: x, y: y)))
                 .cornerRadius(Constant.squareSpacing)
-                .onTapGesture {
+                .gesture(TapGesture(count: 2).onEnded({
                   self.game.reveal(x: x, y: y)
+                }))
+                .onTapGesture {
+                  self.game.flag(x: x, y: y)
                 }
                 .onLongPressGesture {
                   self.game.flag(x: x, y: y)
